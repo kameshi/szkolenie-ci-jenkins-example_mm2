@@ -12,16 +12,9 @@ pipeline {
         
         stage('Build') {
             steps {
-                git branch: 'main', url: 'https://github.com/spring-projects/spring-petclinic'
-                sh 'mvn clean verify'
-                slackSend color: "good", message: "Message from Jenkins Pipelin Marek Madeła"
+                git branch: 'main', url: 'https://github.com/kameshi/szkolenie-ci-jenkins-example_mm2'
+                sh 'mvn clean compile'
             }
-        }
-    }
-    
-    post {
-        always {
-            junit allowEmptyResults: true, testResults: '**/target/surefire-reports/*.xml'
         }
     }
 }
